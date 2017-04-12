@@ -1,0 +1,58 @@
+@import 'reset';
+
+$pink:deeppink;
+
+body{
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 0;
+  margin: 0;
+
+  color:white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.form_block{
+  width:90%;
+  max-width: 400px;
+  margin:auto;
+  form{
+    text-align: left;
+    input:not([type=submit]){
+      border: 0;
+      padding:15px;
+      width:100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+
+      background: rgba(255,255,255,0.3);
+      color: white;
+    }
+    
+    input[type=submit]{
+      width:80%;
+      font-size: 2em;
+      color: white;
+      border:0;
+      margin:10px 10%;
+      background: none;
+      cursor: pointer;
+      
+      &:hover{
+        background: $pink;
+      }
+    }
+  }
+
+
+}
+
+h2{
+  color: $pink;
+  text-transform: uppercase;
+}
