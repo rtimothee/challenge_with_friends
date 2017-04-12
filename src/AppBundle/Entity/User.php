@@ -18,9 +18,48 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Session", mappedBy="user")
+     */
+    private $sessions;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+
+    /**
+     * Add session
+     *
+     * @param \AppBundle\Entity\Session $session
+     *
+     * @return User
+     */
+    public function addSession(\AppBundle\Entity\Session $session)
+    {
+        $this->sessions[] = $session;
+
+        return $this;
+    }
+
+    /**
+     * Remove session
+     *
+     * @param \AppBundle\Entity\Session $session
+     */
+    public function removeSession(\AppBundle\Entity\Session $session)
+    {
+        $this->sessions->removeElement($session);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
     }
 }
