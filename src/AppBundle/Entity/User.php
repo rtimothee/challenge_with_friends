@@ -23,6 +23,13 @@ class User extends BaseUser
      */
     private $sessions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Challenge", mappedBy="user")
+     */
+    private $challenges;
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -61,5 +68,40 @@ class User extends BaseUser
     public function getSessions()
     {
         return $this->sessions;
+    }
+    
+
+    /**
+     * Add challenge
+     *
+     * @param \AppBundle\Entity\Challenge $challenge
+     *
+     * @return User
+     */
+    public function addChallenge(\AppBundle\Entity\Challenge $challenge)
+    {
+        $this->challenges[] = $challenge;
+
+        return $this;
+    }
+
+    /**
+     * Remove challenge
+     *
+     * @param \AppBundle\Entity\Challenge $challenge
+     */
+    public function removeChallenge(\AppBundle\Entity\Challenge $challenge)
+    {
+        $this->challenges->removeElement($challenge);
+    }
+
+    /**
+     * Get challenges
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChallenges()
+    {
+        return $this->challenges;
     }
 }

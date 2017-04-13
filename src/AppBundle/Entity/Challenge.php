@@ -47,6 +47,12 @@ class Challenge
      */
     private $sessions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="challenge")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -170,5 +176,33 @@ class Challenge
     public function getSessions()
     {
         return $this->sessions;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Challenge
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 }

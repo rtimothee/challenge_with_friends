@@ -29,7 +29,7 @@ class Session
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="sessions")
-     * @ORM\JoinColumn(name="challenge_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

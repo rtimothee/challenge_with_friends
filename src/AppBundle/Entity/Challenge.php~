@@ -47,6 +47,12 @@ class Challenge
      */
     private $sessions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="challenge")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -130,5 +136,45 @@ class Challenge
         return $this->created;
     }
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add session
+     *
+     * @param \AppBundle\Entity\Session $session
+     *
+     * @return Challenge
+     */
+    public function addSession(\AppBundle\Entity\Session $session)
+    {
+        $this->sessions[] = $session;
+
+        return $this;
+    }
+
+    /**
+     * Remove session
+     *
+     * @param \AppBundle\Entity\Session $session
+     */
+    public function removeSession(\AppBundle\Entity\Session $session)
+    {
+        $this->sessions->removeElement($session);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
+    }
+}

@@ -11,11 +11,19 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        // replace this example code with whatever you need
+        $rep = $this->getDoctrine()->getRepository('AppBundle:Session');
+        $query = $rep->createQueryBuilder('s')
+            ->where('s.dateEnd > :date')
+            ->setParameter('date', new \DateTime())
+            ->getQuery();
+
+        $current = $query->setMaxResults(1)->getOneOrNullResult();
+
+
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'current' => $current,
         ]);
     }
 }

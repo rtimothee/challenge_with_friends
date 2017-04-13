@@ -3,11 +3,10 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ChallengeType extends AbstractType
+class SessionType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,9 +14,8 @@ class ChallengeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('created',null,array( 'attr'=>array('style'=>'display:none;'), 'label' => false))
+            ->add('dateEnd')
+            ->add('challenge',null,array( 'attr'=>array('style'=>'display:none;'), 'label' => false))
             ->add('user',null,array( 'attr'=>array('style'=>'display:none;'), 'label' => false));
     }
     
@@ -27,7 +25,7 @@ class ChallengeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Challenge'
+            'data_class' => 'AppBundle\Entity\Session'
         ));
     }
 
@@ -36,7 +34,7 @@ class ChallengeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_challenge';
+        return 'appbundle_session';
     }
 
 

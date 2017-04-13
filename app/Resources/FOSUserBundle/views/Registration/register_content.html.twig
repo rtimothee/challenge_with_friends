@@ -1,7 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="form_block">
-    <h2>Enregistrement</h2>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
     <div>
