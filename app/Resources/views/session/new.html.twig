@@ -1,10 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lancer un défi ?</h1>
 
+<div class="form_block">
+    <h2>Lancer un défi ?</h2>
+
+    <h4>Voici le défi tiré au sort :</h4>
+    <div class="selected_challenge">
+        <h5>{{ challenge.name }}</h5>
+        <p>{{ challenge.description }}</p>
+    </div>
+
+    <h4>Choisissez une date :</h4>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Go" />
     {{ form_end(form) }}
+</div>
+{% endblock %}
+
+{%  block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#appbundle_session_dateEnd_date').pickadate({});
+        })
+    </script>
 {% endblock %}

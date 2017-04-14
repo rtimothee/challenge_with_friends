@@ -1,11 +1,11 @@
-@import 'reset';
-
-$pink:deeppink;
+//$pink:deeppink;
+$pink: rgba(0, 104, 119, 0.82);
 
 body{
   background-image: url("../img/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-color:gray;
 
   padding: 0;
   margin: 0;
@@ -18,7 +18,7 @@ body{
 
 .form_block{
   width:90%;
-  max-width: 400px;
+  max-width: 500px;
   margin:auto;
   form{
     text-align: left;
@@ -51,6 +51,10 @@ body{
   }
 
 
+}
+.selected_challenge{
+  width:100%;
+  text-align: left;
 }
 
 h2{

@@ -34,9 +34,9 @@ class Session
     private $user;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_end", type="datetimetz")
+     * @ORM\Column(name="date_end", type="date")
      */
     private $dateEnd;
 
@@ -54,7 +54,7 @@ class Session
     /**
      * Set dateEnd
      *
-     * @param \DateTime $dateEnd
+     * @param \Date $dateEnd
      *
      * @return Session
      */
@@ -68,7 +68,7 @@ class Session
     /**
      * Get dateEnd
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDateEnd()
     {

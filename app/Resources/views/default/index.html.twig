@@ -3,13 +3,15 @@
 {% block body %}
 
     {% if current is not null %}
-        {{ dump(current) }}
+        <h5>{{ current.challenge.name }}</h5>
+        <p>{{ current.challenge.description }}</p>
+        <p>Date : {{ current.dateEnd|date("d/m/Y") }}</p>
     {% endif %}
 
     <div class="boutons">
-        <a href="{{ path("challenge_new") }}">+</a>
+        <a href="{{ path("challenge_new") }}" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
         {% if current is null %}
-            <a href="{{ path("session_new") }}">+</a>
+            <a href="{{ path("session_new") }}" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">shuffle</i></a>
         {% endif %}
     </div>
 {% endblock %}

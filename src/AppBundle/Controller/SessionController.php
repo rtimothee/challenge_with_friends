@@ -41,12 +41,55 @@ class SessionController extends Controller
             $em->persist($session);
             $em->flush();
 
-            return $this->redirectToRoute('session_show', array('id' => $session->getId()));
+            $this->sendMail($session);
+
+            return $this->redirectToRoute('homepage', array('id' => $session->getId()));
         }
 
         return $this->render('session/new.html.twig', array(
             'session' => $session,
             'form' => $form->createView(),
+            'challenge' => $all_challenges[0]
         ));
+    }
+
+    /**
+     * @param Session $current
+     */
+    private function sendMail(Session $current){
+        //all users
+        $rep = $this->getDoctrine()->getRepository('AppBundle:User');
+        $users = $rep->findAll();
+
+        // init send mail
+        $mailer = $this->get('mailer');
+        $sender_email = $current->getUser()->getEmail();
+        $sender_name = $current->getUser()->getUsername();
+
+        //send mail for all users
+        foreach ($users as $u){
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Un nouveau Challenge est tombé !')
+                ->setFrom(array($sender_email => $sender_name))
+                ->setTo(array($u->getEmail() =>$u->getUsername()))
+                ->setBody(
+                    $this->renderView(
+                        'Emails/challenge.html.twig',
+                        array(
+                            'name' => $u->getUsername(),
+                            'current' => $current
+                        )
+                    ),
+                    'text/html'
+                )
+            ;
+            
+            try {
+                $mailer->send($message);
+            } catch (\Exception $e){
+                dump($e->getMessage());
+            }
+        }
+
     }
 }

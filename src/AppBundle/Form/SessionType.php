@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class SessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateEnd')
+            ->add('dateEnd', DateType::class, array('html5' => true, 'widget' => 'single_text'))
             ->add('challenge',null,array( 'attr'=>array('style'=>'display:none;'), 'label' => false))
             ->add('user',null,array( 'attr'=>array('style'=>'display:none;'), 'label' => false));
     }

@@ -3,10 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <title></title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+
+        {% block javascript %}{% endblock %}
     </body>
 </html>
